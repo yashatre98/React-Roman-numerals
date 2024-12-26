@@ -1,0 +1,128 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+# Node.js dependencies
+node_modules/
+npm-debug.log
+yarn-error.log
+package-lock.json
+yarn.lock
+
+# Build outputs
+dist/
+build/
+.eslintcache
+.vite/
+
+# Testing
+coverage/
+*.lcov
+
+# Logs
+*.log
+logs/
+*.log.*
+*.out
+*.pid
+*.pid.lock
+
+# Environment variables
+.env
+.env.*.local
+
+# Editor files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Cache files
+.cache/
+*.tmp
+*.swp
+*.bak
+*.orig
+
+# Source maps
+*.map
+
+# Static exports
+out/
+
+# Dependency directories
+.pnp/
+.pnp.js
+
+# Misc
+.sass-cache/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# JetBrains IDEs
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# React-specific files
+public/*.cache
+src/__snapshots__/
+src/__tests__/
+node_modules/
+
+# MacOS
+*.DS_Store
+
+# Parcel
+.cache/
+.parcel-cache/
+
+# Firebase and Service Workers
+firebase.json
+firestore.indexes.json
+firestore.rules
+manifest.webmanifest
+service-worker.js
+
+# Other CI/CD
+.vercel/
+.netlify/
+
+# Docker (if applicable)
+Dockerfile
+.dockerignore
+
+# Temporary Files
+*.~*
+*.swp
+*.swo
+*.bak
+
+# Custom logs or reports
+report.html
+*.tgz
+
+# React Spectrum
+.storybook/

@@ -1,0 +1,40 @@
+/* Container Styles */
+.toggle-container {
+    width: 60px;
+    height: 30px;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    padding: 2px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+/* Light Mode */
+.toggle-container.light {
+    background-color: #f0f0f0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Dark Mode */
+.toggle-container.dark {
+    background-color: #333;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+}
+
+/* Circle Styles */
+.toggle-circle {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease-in-out;
+}
+
+/* Move Circle to Right in Dark Mode */
+.move-right {
+    transform: translateX(30px);
+}
