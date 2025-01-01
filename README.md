@@ -1,5 +1,35 @@
-# React Roman Numeral Converter
+# React frontend for Roman Numeral Converter
+## Table of Contents
+---
+1. [Project Overview](#project-overview)  
+2. [Roman Numerals Specification Used in This Project](#roman-numerals-specification-used-in-this-project)  
+   - [Symbols and Values](#symbols-and-values)  
+   - [Rules Implemented](#rules-implemented)  
+   - [Algorithm Implementation](#algorithm-implementation)  
+   - [Example Conversion](#example-conversion)  
+   - [Complexity Analysis](#complexity-analysis)  
 
+3. [Build and Run Instructions](#build-and-run-instructions)  
+   - [Prerequisites](#prerequisites)  
+   - [Steps](#steps)  
+   - [Testing Instructions](#testing-instructions)  
+
+4. [Engineering and Testing Methodology](#engineering-and-testing-methodology)  
+   - [Engineering Approach](#engineering-approach)  
+      - [Component Design](#component-design)  
+      - [Algorithm](#algorithm)  
+      - [Theme Change/Detection](#theme-changedetection)  
+      - [Performance Monitoring](#performance-monitoring)  
+      - [Responsiveness](#responsiveness)  
+   - [Testing Approach](#testing-approach)  
+      - [Unit Testing](#unit-testing)  
+      - [Automation](#automation)  
+
+5. [Packaging Layout](#packaging-layout)  
+
+6. [Dependency Attribution](#dependency-attribution)  
+   - [Dependencies](#dependencies)  
+   - [DevDependencies](#devdependencies)  
 
 ---
 
@@ -7,9 +37,87 @@
 
 This project is a **Roman Numeral Converter** built with React. It includes two distinct independent implementations:  
 1. **Custom Converter Component** - A standard component with a light/dark mode toggle.  
-2. **React Spectrum-Based Component** - Utilizes Adobe React Spectrum for theme auto-detection.  
+2. **Adobe Spectrum-Based Component** - Utilizes Adobe React Spectrum for theme auto-detection.  
 
 The project also integrates **performance monitoring** using `web-vitals` and logs metrics to a backend server.
+
+---
+## Roman Numerals Specification Used in This Project
+
+### Symbols and Values  
+The algorithm uses **seven Roman numeral symbols**:  
+[**Roman Numerals - Wikipedia**](https://en.wikipedia.org/wiki/Roman_numerals)
+| Symbol | Value  |
+|--------|--------|
+| **I**  | 1      |
+| **V**  | 5      |
+| **X**  | 10     |
+| **L**  | 50     |
+| **C**  | 100    |
+| **D**  | 500    |
+| **M**  | 1000   |
+
+---
+
+### Rules Implemented
+
+1. **Addition Rule**:  
+   - Symbols are **added** when placed in **descending order**.  
+   - Example: **VI = 5 + 1 = 6**.  
+
+2. **Subtraction Rule**:  
+   - Subtractive notation is handled using **specific pairs** (e.g., **IV = 4**, **IX = 9**).  
+   - The function predefines these cases in the **lookup table**:  
+     - **IV (4)**, **IX (9)**, **XL (40)**, **XC (90)**, **CD (400)**, **CM (900)**.  
+   - These pairs are prioritized before larger values to handle **subtraction first**.  
+
+3. **Descending Order Processing**:  
+   - The lookup table is **sorted in descending order** by value.  
+   - The function iterates through the table, **subtracting values** and **appending numerals** until the input is reduced to zero.  
+
+4. **Repetition Limit**:  
+   - Symbols **I, X, C, and M** can be repeated **up to 3 times**.  
+   - Symbols **V, L, and D** **cannot be repeated**.  
+   - This rule is inherently enforced by the **lookup table**, as it avoids direct repetitions by including combined pairs (e.g., **IV** instead of **IIII**).  
+
+5. **Input Validation**:  
+   - The API accepts only **positive integers**.  
+   - Inputs like **zero**, **negative numbers**, and **non-numeric values** are **handled at the frontend** to prevent invalid API calls.  
+
+---
+
+### Algorithm Implementation
+- **Mapping Table**:  
+  - Predefined lookup table stores values and corresponding numerals, including **subtractive pairs** like **IV** and **IX**.  
+
+- **Iteration Logic**:  
+  - Starts with the **largest value** and checks if it fits into the input number.  
+  - Repeatedly **subtracts the value** and **appends the numeral** until the number is fully converted.  
+
+- **Output**:  
+  - Returns the **Roman numeral string** (e.g., **10 → X**).  
+  - Displays **error messages** for invalid inputs at the frontend level.  
+
+---
+
+### Example Conversion:
+
+| Input | Process                               | Output   |
+|-------|---------------------------------------|----------|
+| **58**  | 50 → L, 5 → V, 3 → III                | **LVIII** |
+| **1994**| 1000 → M, 900 → CM, 90 → XC, 4 → IV   | **MCMXCIV** |
+| **9**   | 9 → IX                                | **IX**    |
+| **4**   | 4 → IV                                | **IV**    |
+
+---
+
+### Complexity Analysis:
+
+- **Time Complexity**:  
+  **O(n)** - The algorithm iterates based on the value of the input, reducing it step-by-step, which makes it proportional to the input size.  
+
+- **Space Complexity**:  
+  **O(1)** - The mapping table is **fixed-size**, and only a **result string** is dynamically updated.  
 
 ---
 
@@ -123,7 +231,6 @@ React-Roman-numerals/
 |-------------------------------|--------------|-------------------------------------------------------------------------|
 | **@adobe/react-spectrum**      | ^3.38.1      | Adobe React Spectrum library for theme-aware components.                |
 | **axios**                      | ^1.7.9       | HTTP client for sending performance metrics to the backend.             |
-| **bootstrap**                  | ^5.3.3       | Front-end framework for responsive styling.                             |
 | **cors**                       | ^2.8.5       | Middleware for enabling Cross-Origin Resource Sharing.                  |
 | **loglevel**                   | ^1.9.2       | Lightweight logging library for JavaScript applications.                |
 | **react**                      | ^18.3.1      | Core framework for building UI components.                              |
