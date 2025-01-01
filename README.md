@@ -157,7 +157,7 @@ The algorithm uses **seven Roman numeral symbols**:
     npm run test:coverage
 ---
 ## Demo Video
-![demo_gif](https://github.com/user-attachments/assets/48cbad78-de91-4499-bede-9260b86716e6)
+![demo_gif](https://github.com/user-attachments/assets/9e5b3174-4c17-42dd-a5ce-dd1aff001f8a)
 
 
 
