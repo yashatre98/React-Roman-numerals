@@ -157,10 +157,8 @@ The algorithm uses **seven Roman numeral symbols**:
     npm run test:coverage
 ---
 ## Demo Video
-<video width="800" controls>
-  <source src="https://github.com/yashatre98/React-Roman-numerals/blob/test/public/Screen%20Recording%202025-01-01%20at%206.46.59%E2%80%AFAM.mov" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
+![demo_gif](https://github.com/user-attachments/assets/8721ce82-cf39-4982-8c00-3a58495b4ffa)
+
 
 ---
 ## Engineering and Testing Methodology
