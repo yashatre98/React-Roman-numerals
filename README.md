@@ -13,8 +13,8 @@
    - [Prerequisites](#prerequisites)  
    - [Steps](#steps)  
    - [Testing Instructions](#testing-instructions)  
-
-4. [Engineering and Testing Methodology](#engineering-and-testing-methodology)  
+4. [Demo Video](#demo-video)
+5. [Engineering and Testing Methodology](#engineering-and-testing-methodology)  
    - [Engineering Approach](#engineering-approach)  
       - [Component Design](#component-design)  
       - [Algorithm](#algorithm)  
@@ -25,9 +25,9 @@
       - [Unit Testing](#unit-testing)  
       - [Automation](#automation)  
 
-5. [Packaging Layout](#packaging-layout)  
+6. [Packaging Layout](#packaging-layout)  
 
-6. [Dependency Attribution](#dependency-attribution)  
+7. [Dependency Attribution](#dependency-attribution)  
    - [Dependencies](#dependencies)  
    - [DevDependencies](#devdependencies)  
 
@@ -156,7 +156,9 @@ The algorithm uses **seven Roman numeral symbols**:
     npm test 
     npm run test:coverage
 ---
+## Demo
 
+[![Project Demo](https://via.placeholder.com/800x450?text=Click+to+Play+Demo)](https://github.com/yashatre98/React-Roman-numerals/blob/test/public/Screen%20Recording%202025-01-01%20at%206.46.59%E2%80%AFAM.mov)---
 ## Engineering and Testing Methodology
 
 ### Engineering Approach
