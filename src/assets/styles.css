@@ -4,12 +4,15 @@
     align-items:flex-start;
     justify-content: center;
     height: 100vh;
-    width: 80vh;
-    padding-left: 5%;
+    width: 50vh;
+    padding: 20px;
     font-family: Arial, sans-serif;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transition: background-color 0.3s ease, color 0.3s ease;
 }
-
+.panel-facts{
+    font-size: small;
+}
 .container.light {
     background-color: #F6F6F6;
     color: #000000;
@@ -216,4 +219,14 @@ h2 {
     100% {
         opacity: 0.2;
     }
+}
+@media (max-width: 800px) {
+    .container{
+        width: 100%; 
+        overflow: hidden;        
+      }
+    .panel-facts{
+        padding-top: 5px;
+    }
+
 }
