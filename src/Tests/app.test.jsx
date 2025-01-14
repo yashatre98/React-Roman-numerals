@@ -5,7 +5,7 @@ import Converter from '../components/manualConverter';
 import SpectrumConverter from '../components/adobeSpectrumConverter';
 
 jest.mock('../components/manualConverter', () => jest.fn(() => <div data-testid="manual-converter">Manual Converter</div>));
-jest.mock('../components/spectrumConverter', () => jest.fn(() => <div data-testid="spectrum-converter">Spectrum Converter</div>));
+jest.mock('../components/adobeSpectrumConverter', () => jest.fn(() => <div data-testid="spectrum-converter">Spectrum Converter</div>));
 jest.mock('../../logger', () => ({
     info: jest.fn(),
     debug: jest.fn(),
