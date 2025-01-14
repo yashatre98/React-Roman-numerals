@@ -1,3 +1,13 @@
+/*
+    This file tests the vitals.js file. The vitals.js file listens for Web Vitals metrics and sends them to an analytics endpoint.
+    The file uses the web-vitals library to listen for metrics and axios to send the metrics to the endpoint.
+    The tests cover the following scenarios:
+        1. Attaching sendToAnalytics to Web Vitals functions: Checks if the sendToAnalytics function is attached to the Web Vitals functions.
+        2. Sending metrics to analytics: Checks if the sendToAnalytics function sends the correct data to the analytics endpoint.
+        3. Error handling for failed requests: Checks if the sendToAnalytics function logs an error when the request fails.
+*/
+
+
 import { onCLS, onLCP, onFCP, onTTFB } from 'web-vitals';
 import axios from 'axios';
 import { sendToAnalytics } from '../vitals';
@@ -16,8 +26,8 @@ describe('Vitals Analytics', () => {
         jest.clearAllMocks();
     });
 
+    // The vitals.js file should attach the sendToAnalytics function to the Web Vitals functions.
     test('should attach sendToAnalytics to Web Vitals functions', () => {
-        // Dynamically import the vitals file to invoke the metric listeners
         jest.isolateModules(() => {
             require('../vitals');
         });
@@ -28,6 +38,7 @@ describe('Vitals Analytics', () => {
         expect(onTTFB).toHaveBeenCalledWith(expect.any(Function));
     });
 
+    // The sendToAnalytics function should send the correct data to the analytics endpoint.
     test('should call axios.post with correct data when sendToAnalytics is invoked', async () => {
         const mockMetric = {
             name: 'LCP',
@@ -36,7 +47,6 @@ describe('Vitals Analytics', () => {
 
         await sendToAnalytics(mockMetric);
 
-        // Verify axios.post was called with the correct parameters
         expect(axios.post).toHaveBeenCalledWith(
             'http://localhost:3000/react-metrics',
             mockMetric,
@@ -44,6 +54,7 @@ describe('Vitals Analytics', () => {
         );
     });
 
+    // The sendToAnalytics function should log an error when the request fails.
     test('should log an error if axios.post fails', async () => {
         const mockMetric = {
             name: 'CLS',
@@ -53,12 +64,10 @@ describe('Vitals Analytics', () => {
         const mockError = new Error('Network error');
         axios.post.mockRejectedValueOnce(mockError);
 
-        // Spy on console.error
         const consoleErrorSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
 
         await sendToAnalytics(mockMetric);
 
-        // Verify error was logged
         expect(consoleErrorSpy).toHaveBeenCalledWith('Error sending metric:', mockError);
 
         consoleErrorSpy.mockRestore();
