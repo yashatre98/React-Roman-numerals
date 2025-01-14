@@ -1,8 +1,16 @@
+/* 
+    tests for App component 
+    - should render App component with manual and spectrum converters
+    - should toggle dark mode in manual converter
+    - should log info when App component initializes
+    - should log theme initialization in useEffect
+*/
+
+
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import App from '../App';
 import Converter from '../components/manualConverter';
-import SpectrumConverter from '../components/adobeSpectrumConverter';
 
 jest.mock('../components/manualConverter', () => jest.fn(() => <div data-testid="manual-converter">Manual Converter</div>));
 jest.mock('../components/adobeSpectrumConverter', () => jest.fn(() => <div data-testid="spectrum-converter">Spectrum Converter</div>));
@@ -18,25 +26,23 @@ describe('App Component', () => {
         jest.clearAllMocks();
     });
 
+    // renders App component with manual and spectrum converters
     test('should render App component with manual and spectrum converters', () => {
         render(<App />);
 
-        // Check if manual converter is rendered
         expect(screen.getByRole('manual-converter')).toBeInTheDocument();
 
-        // Check if spectrum converter is rendered
         const spectrumConverter = screen.getByTestId('spectrum-converter');
         expect(spectrumConverter).toBeInTheDocument();
 
-        // Check the container class for light mode by default
         const appContainer = screen.getByRole('main');
         expect(appContainer).toHaveClass('app-container light');
     });
 
+    // toggle dark mode in manual converter
     test('should toggle dark mode in manual converter', () => {
         const setDarkModeMock = jest.fn();
 
-        // Mock the manual converter with dark mode props
         Converter.mockImplementation(({ darkMode, setDarkMode }) => (
             <div>
                 <button data-testid="toggle-dark-mode" onClick={() => setDarkModeMock(!darkMode)}>
@@ -49,13 +55,12 @@ describe('App Component', () => {
 
         const toggleButton = screen.getByTestId('toggle-dark-mode');
 
-        // Click to toggle dark mode
         fireEvent.click(toggleButton);
 
-        // Ensure dark mode was toggled
         expect(setDarkModeMock).toHaveBeenCalledWith(true);
     });
 
+    // log info when App component initializes
     test('should log info when App component initializes', () => {
         const logInfoMock = jest.spyOn(require('../../logger'), 'info');
 
@@ -65,6 +70,7 @@ describe('App Component', () => {
         logInfoMock.mockRestore();
     });
 
+    // log theme initialization in useEffect
     test('should log theme initialization in useEffect', () => {
         const logInfoMock = jest.spyOn(require('../../logger'), 'info');
 
