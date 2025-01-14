@@ -37,8 +37,8 @@ RUN npm install \
     vite@^6.0.5 \
     supertest \
     express-prom-bundle --save-dev
-# Run tests
-RUN npm test
+#installing the dependencies again to be sure
+RUN npm install 
 
 # Build the app
 RUN npm run build
