@@ -111,8 +111,8 @@ service-worker.js
 .netlify/
 
 # Docker (if applicable)
-Dockerfile
-.dockerignore
+# Dockerfile
+# .dockerignore
 
 # Temporary Files
 *.~*
