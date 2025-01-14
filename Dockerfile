@@ -55,3 +55,5 @@ EXPOSE 5173
 
 # Override the default command to serve the app on port 5173
 CMD ["nginx", "-g", "daemon off;"]
+
+RUN npm test
