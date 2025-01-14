@@ -2,7 +2,7 @@ import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import App from '../App';
 import Converter from '../components/manualConverter';
-import SpectrumConverter from '../components/spectrumConverter';
+import SpectrumConverter from '../components/adobeSpectrumConverter';
 
 jest.mock('../components/manualConverter', () => jest.fn(() => <div data-testid="manual-converter">Manual Converter</div>));
 jest.mock('../components/spectrumConverter', () => jest.fn(() => <div data-testid="spectrum-converter">Spectrum Converter</div>));

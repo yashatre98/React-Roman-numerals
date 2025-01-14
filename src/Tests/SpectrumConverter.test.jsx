@@ -1,75 +1,9 @@
-// import React from 'react';
-// import { render, screen, fireEvent } from '@testing-library/react';
-// import userEvent from '@testing-library/user-event';
-// import axios from 'axios';
-// import SpectrumConverter from '../components/SpectrumConverter'; // Adjust path if necessary
-
-// jest.mock('axios');
-
-// describe('SpectrumConverter Component', () => {
-//   // Test 1: Render Check
-//   test('renders input and button', () => {
-//     render(<SpectrumConverter />);
-//     const inputElement = screen.getByLabelText(/enter a number/i, { exact: false });
-//     const buttonElement = screen.getByRole('button', { name: /convert to roman numeral/i });
-
-//     expect(inputElement).toBeInTheDocument();
-//     expect(buttonElement).toBeInTheDocument();
-//   });
-
-//   // Test 2: Invalid Input Error Message
-//   test('displays error message for invalid input', async () => {
-//     render(<SpectrumConverter />);
-//     const inputElement = screen.getByLabelText(/enter a number/i, { exact: false });
-//     const buttonElement = screen.getByRole('button', { name: /convert to roman numeral/i });
-
-//     await userEvent.click(inputElement); // Focus input
-//     await userEvent.keyboard('invalid'); // Type value
-//     fireEvent.click(buttonElement);
-
-//     // Use findByText for async rendering
-//     const errorMessage = await screen.findByText(/Please enter/i, { exact: false });
-//     expect(errorMessage).toBeInTheDocument();
-//   });
-
-//   // Test 3: Valid Input Result
-//   test('displays result for valid input', async () => {
-//     render(<SpectrumConverter />);
-//     const inputElement = screen.getByLabelText(/enter a number/i, { exact: false });
-//     const buttonElement = screen.getByRole('button', { name: /convert to roman numeral/i });
-
-//     await userEvent.click(inputElement); // Focus input
-//     await userEvent.keyboard('10'); // Simulate typing valid input
-//     fireEvent.click(buttonElement);
-//     // Use test ID for result
-//     const result = await screen.findByTestId('result');
-//     expect(result).toHaveTextContent(/Roman numeral: X/i); // Replace 'X' with actual output
-//   });
-//   test('prevents duplicate API calls during loading', async () => {
-//     axios.get.mockResolvedValueOnce({ data: { output: 'X' } }); // Mock API response
-
-//     render(<SpectrumConverter />);
-//     const inputElement = screen.getByLabelText(/enter a number/i, { exact: false });
-//     const buttonElement = screen.getByRole('button', { name: /convert to roman numeral/i });
-
-//     await userEvent.click(inputElement); // Focus input
-//     await userEvent.keyboard('10'); // Type valid input
-//     fireEvent.click(buttonElement); // Click convert
-//     fireEvent.click(buttonElement); // Click convert again during loading
-
-//     // Expect only one API call to be made
-//     const result = await screen.findByTestId('result');
-//     expect(result).toHaveTextContent(/Roman numeral: X/i);
-//     expect(axios.get).toHaveBeenCalledTimes(1);
-//   });
-
-// });
 
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import axios from 'axios';
-import SpectrumConverter from '../components/SpectrumConverter'; // Adjust path if necessary
+import SpectrumConverter from '../components/adobeSpectrumConverter'; // Adjust path if necessary
 import log from '../../logger';
 
 jest.mock('axios'); // Mock axios

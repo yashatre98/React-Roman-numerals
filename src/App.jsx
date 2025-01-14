@@ -6,7 +6,7 @@
 import React, { useState, useEffect } from 'react';
 import Converter from './components/manualConverter';
 import './App.css';
-import SpectrumConverter from './components/spectrumConverter';
+import SpectrumConverter from './components/adobeSpectrumConverter';
 import log from '../logger';
 
 // Main App component
