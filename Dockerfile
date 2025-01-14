@@ -43,6 +43,9 @@ RUN npm install
 # Build the app
 RUN npm run build
 
+#Run tests
+RUN npm run test:coverage
+
 # Stage 2: Serve the app
 FROM nginx:alpine
 
