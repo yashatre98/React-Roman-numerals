@@ -39,7 +39,7 @@ RUN npm install \
     express-prom-bundle --save-dev
 #installing the dependencies again to be sure
 RUN npm install 
-
+RUN npm test
 # Build the app
 RUN npm run build
 
@@ -56,4 +56,3 @@ EXPOSE 5173
 # Override the default command to serve the app on port 5173
 CMD ["nginx", "-g", "daemon off;"]
 
-RUN npm test
