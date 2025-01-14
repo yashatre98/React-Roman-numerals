@@ -1,3 +1,19 @@
+/*
+  This file contains the test cases for the SpectrumConverter component.
+  The SpectrumConverter component is responsible for converting numbers to Roman numerals.
+  The component makes an API call to fetch the result and displays it on the screen.
+  The component also handles various edge cases such as empty input, invalid input, and API errors.
+  The tests cover the following scenarios:
+      1. Render Check: Checks if the input field and button are rendered correctly.
+      2. Empty Input Error Message: Checks if an error message is displayed for an empty input.
+      3. Displays Result for Valid Input: Checks if the component displays the correct result for a valid input.
+      4. Handles Same Input as Previous: Checks if the component reuses the cached result for the same input.
+      5. Handles API Errors Gracefully: Checks if the component displays an error message for API errors.
+      6. Invalid Input Logs Warning: Checks if the component logs a warning for invalid input.
+      7. Handles Input Out of Range: Checks if the component displays an error message for input out of range.
+*/
+
+
 
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
@@ -29,7 +45,7 @@ describe('SpectrumConverter Component', () => {
     render(<SpectrumConverter />);
     const buttonElement = screen.getByRole('button', { name: /convert to roman numeral/i });
 
-    fireEvent.click(buttonElement); // Click convert without typing anything
+    fireEvent.click(buttonElement); 
 
     const errorMessage = await screen.findByText(/Please enter a number/i);
     expect(errorMessage).toBeInTheDocument();
@@ -38,7 +54,7 @@ describe('SpectrumConverter Component', () => {
 
   // Test 3: Displays Result for Valid Input
   test('displays result for valid input', async () => {
-    axios.get.mockResolvedValueOnce({ data: { output: 'X' } }); // Mock API response
+    axios.get.mockResolvedValueOnce({ data: { output: 'X' } }); 
 
     render(<SpectrumConverter />);
     const inputElement = screen.getByLabelText(/enter a number/i, { exact: false });
@@ -54,7 +70,7 @@ describe('SpectrumConverter Component', () => {
 
   // Test 4: Handles Same Input as Previous
   test('reuses cached result for repeated inputs', async () => {
-    axios.get.mockResolvedValueOnce({ data: { output: 'X' } }); // Mock API response
+    axios.get.mockResolvedValueOnce({ data: { output: 'X' } }); 
 
     render(<SpectrumConverter />);
     const inputElement = screen.getByLabelText(/enter a number/i, { exact: false });
@@ -72,12 +88,12 @@ describe('SpectrumConverter Component', () => {
     fireEvent.click(buttonElement);
     expect(screen.getByTestId('result')).toHaveTextContent(/Roman numeral: X/i);
     expect(log.debug).toHaveBeenCalledWith('Same number as previous input');
-    expect(axios.get).toHaveBeenCalledTimes(1); // Ensure API is only called once
+    expect(axios.get).toHaveBeenCalledTimes(1);
   });
 
   // Test 5: Handles API Errors Gracefully
   test('handles API errors gracefully', async () => {
-    axios.get.mockRejectedValueOnce(new Error('Network Error')); // Mock API error
+    axios.get.mockRejectedValueOnce(new Error('Network Error')); 
 
     render(<SpectrumConverter />);
     const inputElement = screen.getByLabelText(/enter a number/i, { exact: false });
@@ -106,7 +122,7 @@ describe('SpectrumConverter Component', () => {
     const inputElement = screen.getByLabelText(/enter a number/i, { exact: false });
     const buttonElement = screen.getByRole('button', { name: /convert to roman numeral/i });
 
-    await userEvent.type(inputElement, '5000'); // Out of range input
+    await userEvent.type(inputElement, '5000'); 
     fireEvent.click(buttonElement);
 
     expect(screen.queryByTestId('result')).not.toBeInTheDocument();
