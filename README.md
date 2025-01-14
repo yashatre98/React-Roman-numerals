@@ -1,19 +1,19 @@
-# React frontend for Roman Numeral Converter
+# React Frontend for Roman Numeral Converter
+
 ## Table of Contents
----
-1. [Project Overview](#project-overview)  
-2. [Roman Numerals Specification Used in This Project](#roman-numerals-specification-used-in-this-project)  
+
+1. [Build and Run Instructions](#build-and-run-instructions)  
+   - [Prerequisites](#prerequisites)  
+   - [Steps](#steps)  
+   - [Testing Instructions](#testing-instructions)  
+2. [Project Overview](#project-overview)  
+3. [Roman Numerals Specification Used in This Project](#roman-numerals-specification-used-in-this-project)  
    - [Symbols and Values](#symbols-and-values)  
    - [Rules Implemented](#rules-implemented)  
    - [Algorithm Implementation](#algorithm-implementation)  
    - [Example Conversion](#example-conversion)  
    - [Complexity Analysis](#complexity-analysis)  
-
-3. [Build and Run Instructions](#build-and-run-instructions)  
-   - [Prerequisites](#prerequisites)  
-   - [Steps](#steps)  
-   - [Testing Instructions](#testing-instructions)  
-4. [Demo Video](#demo-video)
+4. [Demo Video](#demo-video)  
 5. [Engineering and Testing Methodology](#engineering-and-testing-methodology)  
    - [Engineering Approach](#engineering-approach)  
       - [Component Design](#component-design)  
@@ -24,15 +24,94 @@
    - [Testing Approach](#testing-approach)  
       - [Unit Testing](#unit-testing)  
       - [Automation](#automation)  
-
 6. [Packaging Layout](#packaging-layout)  
-
 7. [Dependency Attribution](#dependency-attribution)  
    - [Dependencies](#dependencies)  
    - [DevDependencies](#devdependencies)  
 
 ---
+## Build and Run Instructions
 
+### Prerequisites
+- **Express.js API setup** https://github.com/yashatre98/Number-to-Roman.git
+- **Node.js** (version 18 or later recommended)  
+- **npm** (comes bundled with Node.js)  
+- **Docker Desktop** Install [docker desktop](https://www.docker.com/products/docker-desktop/) and open it, set paths if needed.
+- **Verify dependencies** 
+    1. Access API on http://localhost:3000/
+    2. Verify dependency installation
+       ```bash
+          test_directory % node --version
+          test_directory % npm --version
+          test_directory % docker --version
+       ```
+   once you get versions as outputs, Open docker desktop and move back to your IDE.
+### Steps
+0. **Backend API Setup**:
+    ```
+    API should be running at localhost:3000 by deafult.
+    Move to next step if already done.
+    Setup the Express API using this link: 
+    https://github.com/yashatre98/Number-to-Roman/blob/main/README.md
+
+1. **Clone the Repository**: 
+   ```bash
+   test_directory % git clone https://github.com/yashatre98/React-Roman-numerals.git
+   test_directory % cd React-Roman-numerals
+   React-Roman-numerals % 
+2. **Install Dependencies**:
+   ```bash
+   React-Roman-numerals % npm install
+3. **Testing Instructions**:
+    ```bash
+    React-Roman-numerals % npm test 
+    React-Roman-numerals % npm run test:coverage
+
+         this will generate coverage report too. 
+4. **Build docker image**:
+    ```bash
+    React-Roman-numerals % docker build --no-cache -t reactapp .
+5. **Run the image**:
+   ```bash
+   React-Roman-numerals % docker run -p 5173:5173 reactapp --name react-app-container
+6. **Access the image in container**:
+   ```bash
+   React-Roman-numerals % docker run -it --entrypoint sh express-api
+
+   Shell changed
+   
+   /usr/src/app #
+7. **Shell change to container entrypoint**:
+   ```bash
+   /usr/src/app # ls
+
+   output should be like this :
+   /usr/src/app # ls
+   Dockerfile         README.md          bin                errorHandler.js    logs               package-lock.json  routes             utils
+   LICENSE            app.js             coverage           logger.js          node_modules       package.json       tests              views
+8. **Run tests in container**:
+   ```bash
+   /usr/src/app # npm run test:coverage
+   this will generate coverage report too.
+9. **Access the application**  
+    ```
+    Open your browser and navigate to:
+   http://localhost:5173
+
+10. **Testing Instructions on local shell**
+    ```bash
+    React-Roman-numerals % npm install 
+    React-Roman-numerals % npm test 
+    React-Roman-numerals % npm run test:coverage
+            this should show the coverage too
+11. **Access Coverage report**:
+    ```
+    React-Roman-numerals % open coverage/lcov-report/index.html
+
+               It will open coverage report in default browser. 
+               This can only run outside docker.
+
+---
 ## Project Overview
 
 This project is a **Roman Numeral Converter** built with React. It includes two distinct independent implementations:  
@@ -120,42 +199,6 @@ The algorithm uses **seven Roman numeral symbols**:
   **O(1)** - The mapping table is **fixed-size**, and only a **result string** is dynamically updated.  
 
 ---
-
-## Build and Run Instructions
-
-### Prerequisites
-- **Express.js API setup** https://github.com/yashatre98/Number-to-Roman.git
-- **Node.js** (version 18 or later recommended)  
-- **npm** (comes bundled with Node.js)  
-
-### Steps
-0. **Backend API Setup**
-    ```
-    API should be running at localhost:3000 by deafult.
-    Move to next step if already done.
-    Setup the Express API using this link: 
-    https://github.com/yashatre98/Number-to-Roman/blob/main/README.md
-
-1. **Clone the Repository**  
-   ```bash
-   git clone https://github.com/yashatre98/React-Roman-numerals.git
-   cd React-Roman-numerals
-2. **Install Dependencies**  
-   ```bash
-   npm install
-3. **Run the local server**  
-   ```bash
-   npm run dev
-3. **Access the application**  
-    ```
-    Open your browser and navigate to:
-   http://localhost:5173
-
-4. **Testing Instructions**
-    ```bash
-    npm test 
-    npm run test:coverage
----
 ## Demo Video
 ![demo_gif](https://github.com/user-attachments/assets/9e5b3174-4c17-42dd-a5ce-dd1aff001f8a)
 
@@ -166,8 +209,8 @@ The algorithm uses **seven Roman numeral symbols**:
 
 ### Engineering Approach
 - **Component Design:**
-  - **`Converter.jsx`** - Implements the primary Roman numeral converter with a toggleable theme button.
-  - **`SpectrumConverter.jsx`** - Uses Adobe Spectrum component library for theme-aware rendering without manual toggling.
+  - **`manualConverter.jsx`** - Implements the primary Roman numeral converter with a toggleable theme button.
+  - **`adobeSpectrumConverter.jsx`** - Uses Adobe Spectrum component library for theme-aware rendering without manual toggling.
   - **`Algorithm`** - The converter algorithm maps Roman numerals to their corresponding integer values using a lookup table. It iterates through the input string, compares adjacent symbols, and either adds or subtracts values based on the precedence of symbols. This ensures correct handling of subtractive notations like **"IV" (4)** and **"IX" (9)**.
   - **`Theme Change/Detection:`**
       - **Custom Component (`Converter.jsx`):** Allows users to toggle between light and dark modes using a button. The toggle state is stored in React state, and CSS classes are dynamically updated based on the selected theme. 
@@ -198,7 +241,8 @@ The algorithm uses **seven Roman numeral symbols**:
           - Simulates invalid input (non-numeric values) and verifies error messages appear dynamically.  
       3. **Valid Input Conversion**:  
           - Simulates valid input (`10`) and checks the result (**"X"**) displayed in the output.  
-          - Ensures results dynamically update based on user actions.  
+          - Ensures results dynamically update based on user actions. 
+  - Rest of the files detailed comments availble on top of files.
  
 - **Automation:**
   - Tests are executed using **Jest** and **React Testing Library**.
@@ -213,11 +257,15 @@ React-Roman-numerals/
 ├── src/                      # Main source code  
 │   ├── assets/               # Static assets  
 │   ├── components/           # React components  
-│   │   ├── Converter.jsx             # Custom converter  
-│   │   ├── SpectrumConverter.jsx     # Spectrum-based converter  
-│   ├── Tests/                 # Test files  
-│   │   ├── Converter.test.jsx          # Tests for Converter  
-│   │   ├── SpectrumConverter.test.jsx  # Tests for SpectrumConverter  
+│   │   ├── manualConverter.jsx             # manual custom converter  
+│   │   ├── adobeSpectrumConverter.jsx     # Adobe Spectrum-based converter  
+│   ├── Tests/                         # Test files  
+│   │   ├── app.test.jsx               # Tests for app.jsx  
+│   │   ├── Converter.test.jsx         # Tests for 
+│   │   ├── logger.test.jsx            # Tests for logger
+│   │   ├── main.test.jsx              # Tests for main.jsx
+│   │   ├── SpectrumConverter.test.jsx # Tests for adobeSpectrumConverter.jsx
+│   │   ├── vitals.test.jsx            # Tests for vitals.js  
 │   ├── App.css                # App styles  
 │   ├── App.jsx                # Root component  
 │   ├── index.css              # Global styles  
@@ -225,6 +273,7 @@ React-Roman-numerals/
 │   ├── vitals.js              # Logs performance metrics  
 ├── README.md                  # Project documentation  
 ├── package.json               # Project metadata  
+├── logger.js                  # Logger  
 ├── package-lock.json          # Dependency lock file  
 |...... Other Config files
 ```
