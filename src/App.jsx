@@ -1,7 +1,7 @@
 /*
     This is the main component of the application. It contains the manual converter and the spectrum converter components.
     It also contains the initial value setting logic for toggling between dark and light mode.
-*/
+*/ 
 
 import React, { useState, useEffect } from 'react';
 import Converter from './components/manualConverter';

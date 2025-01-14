@@ -1,3 +1,11 @@
+/*
+    This file is used to capture Web Vitals and send them to the server.
+    The file uses the web-vitals library to listen for metrics and axios to send the metrics to the server.
+    The sendToAnalytics function sends the metrics to the server.
+    The file also includes error handling for failed requests.
+*/
+
+
 import { onCLS, onLCP, onFCP, onTTFB } from 'web-vitals';
 import axios from 'axios';
 
