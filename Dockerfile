@@ -6,11 +6,14 @@ WORKDIR /usr/src/app
 
 # Copy package.json and package-lock.json to the working directory
 COPY package*.json ./
-RUN npm install
+
 # Install dependencies
-# RUN npm install
+RUN npm install
+
 # Copy the rest of the app's source code
 COPY . .
+
+# Install dependencies
 ENV NODE_ENV=development
 RUN npm install
 RUN npm install \
@@ -36,8 +39,11 @@ RUN npm install \
     vite@^6.0.5 \
     supertest \
     express-prom-bundle --save-dev
+
 # RUN npm test 
 RUN npm test
+
+# Expose port 5173 to the outside world
 EXPOSE 5173
 
 # Override the default command to serve the app on port 5173
