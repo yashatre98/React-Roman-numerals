@@ -12,7 +12,13 @@ COPY package*.json ./
 
 # Copy the rest of the app's source code
 COPY . .
+ENV NODE_ENV=development
 RUN npm install
+RUN npm install jest jest-environment-jsdom --save-dev
+
+# Run tests
+RUN npm test
+
 # Build the app
 RUN npm run build
 
