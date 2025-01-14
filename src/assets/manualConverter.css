@@ -10,9 +10,11 @@
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transition: background-color 0.3s ease, color 0.3s ease;
 }
+
 .panel-facts{
     font-size: small;
 }
+
 .container.light {
     background-color: #F6F6F6;
     color: #000000;
@@ -147,15 +149,6 @@ h2 {
     
 }
 
-@keyframes shine {
-    0% {
-        box-shadow: 0 0 5px 2px rgba(255, 215, 0, 0.2);
-    }
-    100% {
-        box-shadow: 0 0 6px 3px rgba(255, 215, 0, 0.8); 
-    }
-}
-
 .toggle-container.light::after {
     content: '☁ \A☁ ☁'; 
     font-size: 10px;
@@ -169,30 +162,11 @@ h2 {
     animation: float 1.25s infinite alternate; 
 }
 
-@keyframes float {
-    0% {
-        transform: translateY(-1.5px);
-    }
-    100% {
-        transform: translateY(1.5px);
-    }
-}
-
 .toggle-container.dark .toggle-circle {
     background-color: #474747;
     color: #333333;
     box-shadow: 0 0 6px 3px rgba(255,255,255,.8);
     animation: moonGlow 8s infinite alternate;
-}
-
-@keyframes moonGlow {
-    0% {
-        box-shadow: 0 0 5px 2px rgba(255, 255, 255, 0.2);
-    }
-    
-    100% {
-        box-shadow: 0 0 6px 3px rgba(255, 255, 255, 0.8); 
-    }
 }
 
 .move-right {
@@ -220,13 +194,104 @@ h2 {
         opacity: 0.2;
     }
 }
+
+@keyframes shine {
+    0% {
+        box-shadow: 0 0 5px 2px rgba(255, 215, 0, 0.2);
+    }
+    100% {
+        box-shadow: 0 0 6px 3px rgba(255, 215, 0, 0.8); 
+    }
+}
+
+@keyframes moonGlow {
+    0% {
+        box-shadow: 0 0 5px 2px rgba(255, 255, 255, 0.2);
+    }
+    
+    100% {
+        box-shadow: 0 0 6px 3px rgba(255, 255, 255, 0.8); 
+    }
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(-1.5px);
+    }
+    100% {
+        transform: translateY(1.5px);
+    }
+}
+
 @media (max-width: 800px) {
-    .container{
-        width: 100%; 
-        overflow: hidden;        
-      }
-    .panel-facts{
-        padding-top: 5px;
+    .container {
+        width: 100%;
+        padding: 10px; 
+        margin: 0 auto; 
+        overflow: hidden; 
     }
 
+    h1 {
+        font-size: 20px; 
+        text-align: center; 
+    }
+
+    h2 {
+        font-size: 16px;
+        margin-top: 10px;
+        text-align: center;
+    }
+
+    label {
+        font-size: 12px; 
+        text-align: center;
+        margin-bottom: 5px;
+    }
+
+    input {
+        width: 75%; 
+        padding: 10px; 
+        max-width: none;
+        font-size: 14px; 
+    }
+
+    button {
+        font-size: 14px; 
+        padding: 8px 16px; 
+        align-self: center; 
+        box-shadow: none; 
+    }
+
+    .toggle-container {
+        width: 50px; 
+        height: 25px;
+        margin: 15px auto; 
+        padding: 2px;
+    }
+
+    .toggle-circle {
+        width: 22px; 
+        height: 22px;
+    }
+
+    .toggle-container.light::after,
+    .toggle-container.dark::before {
+        font-size: 8px; 
+        line-height: 1; 
+    }
+
+    .panel-facts {
+        font-size: 12px; 
+        padding-top: 5px; 
+    }
+
+    .container.light,
+    .container.dark {
+        align-items: flex-start; 
+        justify-content: flex-start; 
+    }
+
+    body {
+        overflow-x: hidden; 
+    }
 }

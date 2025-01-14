@@ -126,3 +126,4 @@ report.html
 
 # React Spectrum
 .storybook/
+.codegpt

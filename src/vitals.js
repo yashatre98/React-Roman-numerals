@@ -2,7 +2,7 @@ import { onCLS, onLCP, onFCP, onTTFB } from 'web-vitals';
 import axios from 'axios';
 
 
-const sendToAnalytics = async (metric) => {
+export const sendToAnalytics = async (metric) => {
     try {
         
         await axios.post('http://localhost:3000/react-metrics', metric, {
