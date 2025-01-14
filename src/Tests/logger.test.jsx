@@ -1,4 +1,11 @@
 
+/*
+    This test file is used to test the logger utility.
+    The logger utility is used to log messages to the console.
+    The logger utility should not log debug messages when the environment is not development.
+*/
+
+
 describe('Logger Utility', () => {
     let originalEnv;
 
@@ -14,7 +21,7 @@ describe('Logger Utility', () => {
         jest.resetModules(); 
     });
 
-
+    // test that debug messages are logged when environment is development
     test('should not log debug messages when environment is not development', () => {
         process.env.NODE_ENV = 'production'; 
 
