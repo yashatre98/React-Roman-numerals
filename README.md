@@ -73,10 +73,10 @@
     React-Roman-numerals % docker build --no-cache -t reactapp .
 5. **Run the image**:
    ```bash
-   React-Roman-numerals % docker run -p 5173:5173 reactapp --name react-app-container
+   React-Roman-numerals % docker run -p 5173:5173 reactapp
 6. **Access the image in container**:
    ```bash
-   React-Roman-numerals % docker run -it --entrypoint sh express-api
+   React-Roman-numerals % docker run -it --entrypoint sh reactapp
 
    Shell changed
    
@@ -87,8 +87,8 @@
 
    output should be like this :
    /usr/src/app # ls
-   Dockerfile         README.md          bin                errorHandler.js    logs               package-lock.json  routes             utils
-   LICENSE            app.js             coverage           logger.js          node_modules       package.json       tests              views
+   Dockerfile         README.md          coverage           index.html         jest.setup.js      node_modules       package.json       script.js          vite.config.js
+   LICENSE            babel.config.cjs   eslint.config.js   jest.config.cjs    logger.js          package-lock.json  public             src
 8. **Run tests in container**:
    ```bash
    /usr/src/app # npm run test:coverage
@@ -110,6 +110,8 @@
 
                It will open coverage report in default browser. 
                This can only run outside docker.
+<img width="1509" alt="image" src="https://github.com/user-attachments/assets/00212e77-9456-4f5b-9ce0-5efee138e83d" />
+
 
 ---
 ## Project Overview
