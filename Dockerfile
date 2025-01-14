@@ -1,15 +1,14 @@
 # Stage 1: Build the React app
-FROM node:18-alpine AS build
+FROM node:18-alpine 
 
 # Set the working directory inside the container
 WORKDIR /usr/src/app
 
 # Copy package.json and package-lock.json to the working directory
 COPY package*.json ./
-
+RUN npm install
 # Install dependencies
 # RUN npm install
-
 # Copy the rest of the app's source code
 COPY . .
 ENV NODE_ENV=development
@@ -37,22 +36,10 @@ RUN npm install \
     vite@^6.0.5 \
     supertest \
     express-prom-bundle --save-dev
-#installing the dependencies again to be sure
-RUN npm install 
+# RUN npm test 
 RUN npm test
-# Build the app
-RUN npm run build
-
-
-# Stage 2: Serve the app
-FROM nginx:alpine
-
-# Copy the build output to Nginx's html directory
-COPY --from=build /usr/src/app/dist /usr/share/nginx/html
-
-# Expose port 5173
 EXPOSE 5173
 
 # Override the default command to serve the app on port 5173
-CMD ["nginx", "-g", "daemon off;"]
+CMD ["npm", "run", "dev"]
 
