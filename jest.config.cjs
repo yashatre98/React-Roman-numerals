@@ -1,12 +1,13 @@
+// jest.config.cjs
+const path = require("path");
+
 module.exports = {
-    testEnvironment: 'jsdom',
+    testEnvironment: "jest-environment-jsdom",
+    setupFilesAfterEnv: ["<rootDir>/jest.setup.js"],
     transform: {
-      '^.+\\.jsx?$': 'babel-jest', // Transform JS and JSX files with Babel
+        "^.+\\.jsx?$": "babel-jest",
     },
     moduleNameMapper: {
-      '\\.(css|less|scss|sass)$': 'identity-obj-proxy', // Mock CSS imports
+        "\\.(css|scss)$": "identity-obj-proxy",
     },
-    setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
-    moduleFileExtensions: ['js', 'jsx'],
-    transformIgnorePatterns: ['/node_modules/'],
-  };
+};

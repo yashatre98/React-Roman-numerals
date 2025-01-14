@@ -14,12 +14,10 @@ COPY package*.json ./
 COPY . .
 ENV NODE_ENV=development
 RUN npm install
-RUN npm install --save-dev @babel/plugin-transform-runtime
 RUN npm install \
     @babel/core@^7.26.0 \
     @babel/preset-env@^7.26.0 \
     @babel/preset-react@^7.26.3 \
-    @babel/plugin-transform-runtime \
     @eslint/js@^9.17.0 \
     @testing-library/jest-dom@^6.6.3 \
     @testing-library/react@^16.1.0 \
@@ -43,7 +41,6 @@ RUN npm install \
 RUN npm install 
 RUN npm test
 # Build the app
-
 RUN npm run build
 
 
